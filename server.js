@@ -9,6 +9,8 @@ const {
     MONGODB_URI= "mongodb://localhost:27017/c18"
 } = process.env;
 
+console.log(process.env.TEST)
+
 try {
     const conn = await mongoose.connect(MONGODB_URI);
     console.log("connected", conn);
@@ -53,7 +55,7 @@ const songSchema = new Schema({
 
 const Song = mongoose.model('Song', songSchema)
 
-app.get('/api/v1/songs/:id', async (req, res) => {
+app.get('/api/v1/songs/:id?', async (req, res) => {
 let query = {};
 if(req.params.id){
     query._id = req.params.id;
